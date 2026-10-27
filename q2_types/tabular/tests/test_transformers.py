@@ -10,7 +10,7 @@ import json
 import pandas as pd
 from pandas.testing import assert_series_equal, assert_frame_equal
 
-from qiime2.plugin.testing import TestPluginBase
+from rachis.plugin.testing import TestPluginBase
 from qiime2.plugin.util import transform
 import qiime2.metadata
 
@@ -81,6 +81,17 @@ class TestTransformers(TestPluginBase):
         obs['group'] = obs['group'].astype('string')
 
         pd.testing.assert_frame_equal(obs, exp)
+
+    def test_jsonl_to_metadata_numeric_string_ids(self):
+        _, obs = self.transform_format(
+            TableJSONLFileFormat, qiime2.Metadata,
+            'numeric_string_ids.table.jsonl')
+
+        exp = pd.DataFrame(
+            {'measure': [0.5, 1.5]},
+            index=pd.Index(['1', '0001'], name='id'))
+
+        pd.testing.assert_frame_equal(obs.to_dataframe(), exp)
 
 
 class TestDataframeToJsonlTypeHandling(TestPluginBase):
