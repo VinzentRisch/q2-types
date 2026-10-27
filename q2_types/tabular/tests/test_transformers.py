@@ -10,7 +10,7 @@ import json
 import pandas as pd
 from pandas.testing import assert_series_equal, assert_frame_equal
 
-from rachis.plugin.testing import TestPluginBase
+from qiime2.plugin.testing import TestPluginBase
 from qiime2.plugin.util import transform
 import qiime2.metadata
 
