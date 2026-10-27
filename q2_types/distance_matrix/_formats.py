@@ -7,10 +7,11 @@
 # ----------------------------------------------------------------------------
 
 import skbio
-import qiime2.plugin.model as model
-from qiime2.plugin import ValidationError
 from skbio.io import FileFormatError
 from skbio.stats.distance import PairwiseMatrixError
+
+import qiime2.plugin.model as model
+from qiime2.plugin import ValidationError
 
 
 class LSMatFormat(model.TextFileFormat):
